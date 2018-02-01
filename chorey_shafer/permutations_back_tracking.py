@@ -13,29 +13,34 @@ cab
 cba
 """
 
-def calculate_permutations(element_list, pos, r=None):
+def calculate_permutations(element_list, result_list, pos, r=None):
     n = len(element_list)
     if pos == n:
         if r:
-            print(element_list[:r])
+            result_list.append(element_list[:r][:])
         else:
-            print(element_list)
+            result_list.append(element_list[:])
         return
 
     index = pos
     while pos < n:
         element_list[pos], element_list[index] = element_list[index], element_list[pos]
-        calculate_permutations(element_list, index+1, r)
+        calculate_permutations(element_list, result_list, index+1, r)
         # back tracking the element in the list
         element_list[pos], element_list[index] = element_list[index], element_list[pos]
         pos += 1
 
 
+
 def permutations(element_list, r=None):
-    calculate_permutations(list(element_list), 0)
+    result_list = []
+    calculate_permutations(list(element_list), result_list, 0)
+
+    return result_list
 
 def main():
-    permutations("abc", 2)
+    for da in permutations("abc", 2):
+        print(da)
 
 if __name__ == '__main__':
     main()
