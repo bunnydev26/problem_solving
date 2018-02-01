@@ -103,4 +103,5 @@ ENV/
 # Intellij Editor files
 .idea/
 
-
+# temporary cache
+*.pyc
